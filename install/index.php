@@ -18,11 +18,11 @@ class beeralex_favorite extends CModule
         $this->MODULE_ID = 'beeralex.favorite';
         $this->MODULE_VERSION = $arModuleVersion['VERSION'];
         $this->MODULE_VERSION_DATE = $arModuleVersion['VERSION_DATE'];
-        $this->MODULE_NAME = Loc::getMessage('ITB_FAVORITE_MODULE_NAME');
-        $this->MODULE_DESCRIPTION = Loc::getMessage('ITB_FAVORITE_MODULE_DESCRIPTION');
+        $this->MODULE_NAME = Loc::getMessage('BEERALEX_FAVORITE_MODULE_NAME');
+        $this->MODULE_DESCRIPTION = Loc::getMessage('BEERALEX_FAVORITE_MODULE_DESCRIPTION');
 
-        $this->PARTNER_NAME = Loc::getMessage('ITB_FAVORITE_PARTNER_NAME');
-        $this->PARTNER_URI = Loc::getMessage('ITB_FAVORITE_PARTNER_URI');
+        $this->PARTNER_NAME = Loc::getMessage('BEERALEX_FAVORITE_PARTNER_NAME');
+        $this->PARTNER_URI = Loc::getMessage('BEERALEX_FAVORITE_PARTNER_URI');
     }
 
     public function DoInstall()
@@ -36,10 +36,10 @@ class beeralex_favorite extends CModule
             $this->InstallEvents();
             $this->InstallFiles();
         } else {
-            $APPLICATION->ThrowException(Loc::getMessage('ITB_FAVORITE_INSTALL_ERROR_D7'));
+            $APPLICATION->ThrowException(Loc::getMessage('BEERALEX_FAVORITE_INSTALL_ERROR_D7'));
         }
 
-        $APPLICATION->IncludeAdminFile(Loc::getMessage('ITB_FAVORITE_INSTALL_TITLE'), __DIR__ . '/step.php');
+        $APPLICATION->IncludeAdminFile(Loc::getMessage('BEERALEX_FAVORITE_INSTALL_TITLE'), __DIR__ . '/step.php');
     }
 
     public function DoUninstall()
@@ -50,7 +50,7 @@ class beeralex_favorite extends CModule
         $request = $context->getRequest();
         Loader::includeModule($this->MODULE_ID);
         if ($request['step'] < 2) {
-            $APPLICATION->IncludeAdminFile(Loc::getMessage('ITB_FAVORITE_UNINSTALL_TITLE'), __DIR__ . '/unstep1.php');
+            $APPLICATION->IncludeAdminFile(Loc::getMessage('BEERALEX_FAVORITE_UNINSTALL_TITLE'), __DIR__ . '/unstep1.php');
         } else {
             $this->UnInstallFiles();
             $this->UnInstallEvents();
@@ -60,7 +60,7 @@ class beeralex_favorite extends CModule
 
             \Bitrix\Main\ModuleManager::unRegisterModule($this->MODULE_ID);
 
-            $APPLICATION->IncludeAdminFile(Loc::getMessage('ITB_FAVORITE_UNISTALL_TITLE'), __DIR__ . '/unstep2.php');
+            $APPLICATION->IncludeAdminFile(Loc::getMessage('BEERALEX_FAVORITE_UNISTALL_TITLE'), __DIR__ . '/unstep2.php');
         }
     }
 
