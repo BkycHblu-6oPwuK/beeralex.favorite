@@ -1,6 +1,6 @@
 {
-    "name": "beeralex/beeralex.favorite",
-    "description": "My favorite module",
+    "name": "beeralex/beeralex.notification",
+    "description": "My notification module",
     "type": "bitrix-module",
     "license": "MIT",
     "authors": [
