@@ -5,6 +5,7 @@ use Bitrix\Main\Loader;
 use Bitrix\Main\Localization\Loc;
 use Beeralex\Favorite\EventHandlers;
 use Beeralex\Favorite\FavoriteTable;
+use Bitrix\Main\ModuleManager;
 
 Loc::loadMessages(__FILE__);
 
@@ -29,7 +30,7 @@ class beeralex_favorite extends CModule
     {
         global $APPLICATION;
 
-        if ($this->isVersionD7()) {
+        if ($this->checkRequirements()) {
             \Bitrix\Main\ModuleManager::registerModule($this->MODULE_ID);
             Loader::includeModule($this->MODULE_ID);
             $this->InstallDB();
@@ -90,8 +91,8 @@ class beeralex_favorite extends CModule
         $eventManager->unRegisterEventHandler('sale', 'OnSaleUserDelete', $this->MODULE_ID, EventHandlers::class, 'onSaleUserDelete');
     }
 
-    protected function isVersionD7()
+    public function checkRequirements(): bool
     {
-        return CheckVersion(\Bitrix\Main\ModuleManager::getVersion('main'), '14.0.0');
+        return version_compare(ModuleManager::getVersion('main'), '14.00.00') >= 0 && Loader::includeModule('beeralex.core');
     }
 }

@@ -4,6 +4,6 @@ $MESS['BEERALEX_FAVORITE_MODULE_DESCRIPTION'] = 'Модуль позволяет
 $MESS['BEERALEX_FAVORITE_PARTNER_NAME'] = 'Beeralex';
 $MESS['BEERALEX_FAVORITE_PARTNER_URI'] = '#';
 
-$MESS['BEERALEX_FAVORITE_INSTALL_ERROR_D7'] = 'Для работы модуля необходима версия Битрикс с поддержкой D7';
+$MESS['BEERALEX_FAVORITE_INSTALL_ERROR_D7'] = 'Для работы модуля необходима версия Битрикс с поддержкой D7 и установленный модуль beeralex.core';
 $MESS['BEERALEX_FAVORITE_INSTALL_TITLE'] = 'Установка модуля избранного';
 $MESS['BEERALEX_FAVORITE_UNINSTALL_TITLE'] = 'Удаление модуля избранного';
