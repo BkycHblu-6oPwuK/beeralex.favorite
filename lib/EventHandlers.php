@@ -6,6 +6,7 @@ namespace Beeralex\Favorite;
 
 use Bitrix\Sale\Internals\FuserTable;
 use Beeralex\Core\Helpers\FuserHelper;
+use Beeralex\Core\Service\FuserService;
 
 class EventHandlers
 {
@@ -38,18 +39,19 @@ class EventHandlers
 
     public static function onUserLogin($newUserId)
     {
+        $fuserService = service(FuserService::class);
         // переносим все избранные товары от незарегистрированного пользователя к текущему
 
         // Получаем fuserId неавторизованного пользователя
-        $fromFuserId = FuserHelper::getFuserIdFromSession();
+        $fromFuserId = $fuserService->getFuserIdFromSession();
         if ($fromFuserId <= 0) {
             return;
         }
 
         // Получаем fuserId пользователя под которым авторизуются
-        $toFuserId = FuserHelper::getFuserIdForUser($newUserId);
+        $toFuserId = $fuserService->getFuserIdForUser($newUserId);
         if (!$toFuserId) {
-            $toFuserId = FuserHelper::addFuserForUser($newUserId);
+            $toFuserId = $fuserService->addFuserForUser($newUserId);
         }
 
         if ($fromFuserId != $toFuserId) {
