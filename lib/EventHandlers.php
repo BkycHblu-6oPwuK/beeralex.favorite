@@ -5,7 +5,6 @@ namespace Beeralex\Favorite;
 
 
 use Bitrix\Sale\Internals\FuserTable;
-use Beeralex\Core\Helpers\FuserHelper;
 use Beeralex\Core\Service\FuserService;
 
 class EventHandlers
