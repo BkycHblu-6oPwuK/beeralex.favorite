@@ -1,10 +1,17 @@
 <?php
 
+use Beeralex\Favorite\FavouriteService;
+use Beeralex\Favorite\Options;
+
 return [
-    'controllers' => [
+	'services' => [
 		'value' => [
-			'defaultNamespace' => '\\Beeralex\\Favorite\\Controllers',
-		],
-		'readonly' => true,
-	]
+			Options::class => [
+				'className' => Options::class
+			],
+			FavouriteService::class => [
+				'className' => FavouriteService::class
+			],
+		]
+	],
 ];

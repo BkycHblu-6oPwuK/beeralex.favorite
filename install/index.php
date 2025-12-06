@@ -78,6 +78,7 @@ class beeralex_favorite extends CModule
     public function InstallEvents()
     {
         $eventManager = EventManager::getInstance();
+        $eventManager->registerEventHandler('main', 'OnPageStart', $this->MODULE_ID, EventHandlers::class, 'onPageStart');
         $eventManager->registerEventHandler('main', 'OnUserLogin', $this->MODULE_ID, EventHandlers::class, 'restoreDeletedFuser', 200);
         $eventManager->registerEventHandler('main', 'OnUserLogin', $this->MODULE_ID, EventHandlers::class, 'onUserLogin', 50);
         $eventManager->registerEventHandler('sale', 'OnSaleUserDelete', $this->MODULE_ID, EventHandlers::class, 'onSaleUserDelete');
@@ -86,6 +87,7 @@ class beeralex_favorite extends CModule
     public function UnInstallEvents()
     {
         $eventManager = EventManager::getInstance();
+        $eventManager->unRegisterEventHandler('main', 'OnPageStart', $this->MODULE_ID, EventHandlers::class, 'onPageStart');
         $eventManager->unRegisterEventHandler('main', 'OnUserLogin', $this->MODULE_ID, EventHandlers::class, 'restoreDeletedFuser');
         $eventManager->unRegisterEventHandler('main', 'OnUserLogin', $this->MODULE_ID, EventHandlers::class, 'onUserLogin');
         $eventManager->unRegisterEventHandler('sale', 'OnSaleUserDelete', $this->MODULE_ID, EventHandlers::class, 'onSaleUserDelete');
