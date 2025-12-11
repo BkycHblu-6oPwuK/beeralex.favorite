@@ -31,7 +31,13 @@ class EventHandlers
     public static function restoreDeletedFuser()
     {
         if (isset($GLOBALS['DELETED_FUSER_ROW'])) {
-            FuserTable::add($GLOBALS['DELETED_FUSER_ROW']);
+            $row = $GLOBALS['DELETED_FUSER_ROW'];
+
+            if (FuserTable::getById($row['ID'])->fetch()) {
+                unset($row['ID']);
+            }
+
+            FuserTable::add($row);
         }
     }
 
@@ -39,6 +45,7 @@ class EventHandlers
     public static function onUserLogin($newUserId)
     {
         $fuserService = service(FuserService::class);
+        $favoriteService = service(FavouriteService::class);
         // переносим все избранные товары от незарегистрированного пользователя к текущему
 
         // Получаем fuserId неавторизованного пользователя
@@ -54,7 +61,7 @@ class EventHandlers
         }
 
         if ($fromFuserId != $toFuserId) {
-            Helper::copyFavoritesToFuser($fromFuserId, $toFuserId);
+            $favoriteService->copyFavoritesToFuser($fromFuserId, $toFuserId);
         }
     }
 }
