@@ -13,7 +13,7 @@ class FavouriteService
 
     public function __construct(?string $siteId = null)
     {
-        $this->siteId = $siteId ?? Context::getCurrent()->getSite();
+        $this->siteId = $siteId ?? Context::getCurrent()->getSite() ?? 's1';
         Loader::requireModule('sale');
         Loader::requireModule('iblock');
     }
