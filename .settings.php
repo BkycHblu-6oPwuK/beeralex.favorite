@@ -2,6 +2,7 @@
 
 use Beeralex\Favorite\FavouriteService;
 use Beeralex\Favorite\Options;
+use Bitrix\Main\Context;
 
 return [
 	'services' => [
@@ -10,7 +11,11 @@ return [
 				'className' => Options::class
 			],
 			FavouriteService::class => [
-				'className' => FavouriteService::class
+				'constructor' => static function () {
+					return new FavouriteService(
+						Context::getCurrent()->getSite() ?? 's1'
+					);
+				}
 			],
 		]
 	],

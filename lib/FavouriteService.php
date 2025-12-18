@@ -3,7 +3,6 @@
 namespace Beeralex\Favorite;
 
 use Bitrix\Iblock\ElementTable;
-use Bitrix\Main\Context;
 use Bitrix\Main\Loader;
 use Bitrix\Sale\Fuser;
 
@@ -11,9 +10,9 @@ class FavouriteService
 {
     protected string $siteId;
 
-    public function __construct(?string $siteId = null)
+    public function __construct(string $siteId)
     {
-        $this->siteId = $siteId ?? Context::getCurrent()->getSite() ?? 's1';
+        $this->siteId = $siteId;
         Loader::requireModule('sale');
         Loader::requireModule('iblock');
     }

@@ -2,6 +2,7 @@
 
 namespace Sprint\Migration;
 
+use Beeralex\Favorite\FavouriteService;
 use Bitrix\Main\Application;
 use Bitrix\Main\Loader;
 use Beeralex\Favorite\Helper;
@@ -16,9 +17,7 @@ class Version20250417085746 extends Version
 
     public function up()
     {
-        if(!Loader::includeModule('beeralex.favorite')){
-            throw new \Exception("not installed module beeralex.favourite");
-        }
+        Loader::requireModule('beeralex.favorite');
         $connection = Application::getConnection();
         $sqlHelper = $connection->getSqlHelper();
 
@@ -31,7 +30,7 @@ class Version20250417085746 extends Version
         while ($row = $result->fetch()) {
             if (!$row['I_BLOCK_ID'] || !$row['F_USER_ID']) continue;
             try {
-                Helper::add((int)$row['I_BLOCK_ID'],(int)$row['F_USER_ID']);
+                service(FavouriteService::class)->add((int)$row['I_BLOCK_ID'],(int)$row['F_USER_ID']);
             } catch (\Exception $e) {
                 echo 'Ошибка: ' . $e->getMessage() . PHP_EOL;
             }
